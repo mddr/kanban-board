@@ -16,7 +16,9 @@
 		"extraFileExtensions": [".svelte"]
 	},
 	"plugins": ["@typescript-eslint"],
-	"rules": {},
+	"rules": {
+		"no-self-assign": "off"
+	},
 	"overrides": [
 		{
 			"files": ["*.svelte"],
