@@ -9,13 +9,13 @@
 
 	export let board: Board;
 
+	let newFormVisible = false;
+
 	const dispatcher = createEventDispatcher<{
 		removeBoard: void;
 		addElement: CreateBoardElement;
 		removeElement: { id: BoardElement["id"] };
 	}>();
-
-	let newFormVisible = false;
 
 	function displayNewItemForm() {
 		newFormVisible = true;
@@ -51,16 +51,16 @@
 
 		<div>
 			<button
-				class="py-2 px-4 transition bg-neutral-500 enabled:hover:bg-neutral-600 enabled:focus:bg-neutral-500 rounded text-white disabled:bg-neutral-900"
+				class="board-button"
 				type="button"
 				disabled={newFormVisible}
-				on:click={displayNewItemForm}>Add item</button
+				on:click={displayNewItemForm}
 			>
-			<button
-				class="py-2 px-4 transition bg-neutral-500 enabled:hover:bg-neutral-600 enabled:focus:bg-neutral-500 rounded text-white disabled:bg-neutral-900"
-				type="button"
-				on:click={removeBoard}>Remove</button
-			>
+				Add item
+			</button>
+			<button class="board-button" type="button" on:click={removeBoard}>
+				Remove
+			</button>
 		</div>
 	</div>
 
@@ -88,3 +88,9 @@
 		{/each}
 	</div>
 </section>
+
+<style>
+	.board-button {
+		@apply py-2 px-4 transition bg-neutral-500 enabled:hover:bg-neutral-600 enabled:focus:bg-neutral-500 rounded text-white disabled:bg-neutral-900;
+	}
+</style>

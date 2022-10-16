@@ -15,7 +15,6 @@
 	let boards: Board[] = readBoards();
 
 	$: console.log({ boards });
-
 	$: saveBoards(boards);
 
 	function removeElementFromBoard(

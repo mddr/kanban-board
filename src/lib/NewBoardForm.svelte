@@ -12,10 +12,10 @@
 	}>();
 
 	const title = field("title", "", [required()], { checkOnInit: true });
-	const backgroundColor = field("backgroundColor", "#fff", [required()], {
+	const backgroundColor = field("backgroundColor", "#BADA55", [required()], {
 		checkOnInit: true,
 	});
-	const headerColor = field("headerColor", "#000", [required()], {
+	const headerColor = field("headerColor", "#1A1A1A", [required()], {
 		checkOnInit: true,
 	});
 	const newItemForm = form(title, backgroundColor, headerColor);
@@ -40,61 +40,31 @@
 </script>
 
 <form class="p-3" on:submit={(event) => emitValues(event)}>
-	<FormField>
-		<label for="board-item-title">Title</label>
-		<input
-			type="text"
-			id="board-item-title"
-			aria-describedby="board-item-title-error"
-			class={$title.errors.length ? "border-b-red-500" : "border-b-fuchsia-900"}
-			bind:value={$title.value}
-		/>
-		{#if $title.errors.length}
-			<span id="board-item-title-error" class="text-sm text-red-500">
-				Field required
-			</span>
-		{/if}
-	</FormField>
+	<FormField label="Title" id="new-board-title" fieldDef={title} />
 
-	<FormField>
-		<label for="board-item-bg">Background color</label>
-		<input
-			type="color"
-			id="board-item-bg"
-			aria-describedby="board-item-bg-error"
-			bind:value={$backgroundColor.value}
-		/>
-		{#if $backgroundColor.errors.length}
-			<span id="board-item-bg-error" class="text-sm text-red-500">
-				Field required
-			</span>
-		{/if}
-	</FormField>
+	<FormField
+		label="Background color"
+		id="new-board-bg"
+		inputType="color"
+		fieldDef={backgroundColor}
+	/>
 
-	<FormField>
-		<label for="board-item-text">Header color</label>
-		<input
-			type="color"
-			id="board-item-text"
-			aria-describedby="board-item-text-error"
-			bind:value={$headerColor.value}
-		/>
-		{#if $headerColor.errors.length}
-			<span id="board-item-text-error" class="text-sm text-red-500">
-				Field required
-			</span>
-		{/if}
-	</FormField>
+	<FormField
+		label="Header color"
+		id="new-board-header"
+		inputType="color"
+		fieldDef={headerColor}
+	/>
 
 	<button
-		class="rounded bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-400 px-4 py-2 mt-2"
+		class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-400"
 		type="button"
 		on:click={emitCancel}
 	>
 		Cancel
 	</button>
 	<button
-		class="rounded bg-neutral-500 enabled:hover:bg-neutral-600 active:bg-neutral-600 px-4 py-2 text-white mt-2 "
+		class="enabled:hover:bg-neutral-600 active:bg-neutral-600 bg-neutral-500 text-white"
 		type="submit"
 	>
 		Submit
@@ -102,7 +72,7 @@
 </form>
 
 <style>
-	input[type="text"] {
-		@apply border-2;
+	button {
+		@apply rounded px-4 py-2 mt-2;
 	}
 </style>
